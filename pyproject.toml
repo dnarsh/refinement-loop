@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "refinement-loop"
+version = "0.1.0"
+description = "Reference implementation of the answer-then-refine loop: engine answers a query, judge scores it, reformulator rewrites the query if score is too low, retry. Pluggable adapters; ships with stub defaults that run with zero API keys."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "aiton08255", email = "ait.on.08255@gmail.com" }]
+keywords = ["llm", "deep-research", "iterative-refinement", "agentic", "rag", "eval"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# Zero required runtime deps. The bench dep is needed only when you
+# use the bench-driven eval helpers, but importing the core loop
+# (RefinementLoop + protocols + stubs) works without it.
+dependencies = [
+  "deep-research-bench @ git+https://github.com/aiton08255/deep-research-bench",
+]
+
+[project.urls]
+Homepage = "https://github.com/aiton08255/refinement-loop"
+Source = "https://github.com/aiton08255/refinement-loop"
+Issues = "https://github.com/aiton08255/refinement-loop/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+ollama = ["ollama>=0.4"]
+
+[project.scripts]
+refinement-loop-eval = "refinement_loop.eval_cli:main"
+
+[tool.hatch.metadata]
+# Required because the deep-research-bench dep is a git direct reference
+# until it's published to PyPI. Once the bench is on PyPI this flag can
+# be removed and the dep string simplified in [project].
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/refinement_loop"]

@@ -1,0 +1,113 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg
+*.egg-info/
+.eggs/
+.installed.cfg
+.python-version
+
+# ===== Caches =====
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.cache/
+
+# ===== Virtual envs =====
+.venv/
+.venv-*/
+venv/
+venv-*/
+env/
+ENV/
+
+# ===== Build artifacts =====
+dist/
+build/
+*.whl
+*.tar.gz
+
+# ===== Test / coverage =====
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.hypothesis/
+
+# ===== Runtime / output artifacts =====
+results/
+runs/
+*.report.json
+*.report.md
+
+# ===== Editors / IDEs =====
+.idea/
+.vscode/
+.vscode-test/
+.history/
+*.swp
+*.swo
+*~
+
+# ===== Claude Code / AI assistant metadata =====
+.claude/
+.cursor/
+.aider*
+.continue/
+.codeium/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Node (defensive) =====
+node_modules/
+
+# ===== SECRETS — never commit any of these =====
+.env
+.env.*
+*.env
+.envrc
+secrets/
+secret/
+credentials.json
+credentials.yaml
+credentials.yml
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+service-account*.json
+gcp-key*.json
+aws-credentials*
+.aws/
+.gcp/
+.azure/
+config.local.*
+*.local
+*-secret.*
+*-secrets.*
+
+# ===== AI/ML provider tokens =====
+.anthropic
+.openai
+.huggingface/
+.cache/huggingface/
+
+# ===== Databases =====
+*.sqlite
+*.sqlite3
+*.db
+
+# ===== Allow template / sample files =====
+!.env.example
+!.env.sample
