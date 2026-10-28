@@ -1,8 +1,9 @@
 # refinement-loop
+[![tests](https://github.com/dnarsh/refinement-loop/actions/workflows/tests.yml/badge.svg)](https://github.com/dnarsh/refinement-loop/actions/workflows/tests.yml)
 
 A small (~600 LOC, one runtime dep, Python 3.8+) reference implementation of the **answer-then-refine loop** — the pattern where a research engine answers a query, a judge scores the answer, and if the score is too low, a reformulator rewrites the query for the next attempt.
 
-Composes cleanly with [`deep-research-bench`](https://github.com/aiton08255/deep-research-bench) for measurable A/B comparison. Ships with **stub defaults that run today with zero API keys** and an optional Ollama adapter for real local-LLM refinement.
+Composes cleanly with [`deep-research-bench`](https://github.com/dnarsh/deep-research-bench) for measurable A/B comparison. Ships with **stub defaults that run today with zero API keys** and an optional Ollama adapter for real local-LLM refinement.
 
 Extracted from a private long-running research system where iterative refinement measurably beat single-shot answering on questions with a specific structure (multi-part synthesis, citation-density-sensitive queries, "distinguish demo from proven" adversarial cases). The pattern is generalized here; the private engine and eval data stay closed.
 
@@ -39,15 +40,15 @@ Plus an **Acceptance** policy — decides when to stop refining (built-ins: thre
 Source-only until v0.1.0 lands on PyPI. Install BOTH packages (the bench is a runtime dep):
 
 ```bash
-pip install git+https://github.com/aiton08255/deep-research-bench
-pip install git+https://github.com/aiton08255/refinement-loop
+pip install git+https://github.com/dnarsh/deep-research-bench
+pip install git+https://github.com/dnarsh/refinement-loop
 ```
 
 Or clone and install editable for local hacking:
 
 ```bash
-git clone https://github.com/aiton08255/deep-research-bench
-git clone https://github.com/aiton08255/refinement-loop
+git clone https://github.com/dnarsh/deep-research-bench
+git clone https://github.com/dnarsh/refinement-loop
 pip install -e ./deep-research-bench
 pip install -e "./refinement-loop[dev]"
 ```
@@ -63,7 +64,7 @@ ollama pull qwen2.5:0.5b   # tiny + fast; works well for the reformulator role
 
 ## Quick start — see the loop in action in 30 seconds
 
-The package ships a CLI that runs the [10 public benchmark cases from deep-research-bench](https://github.com/aiton08255/deep-research-bench/blob/main/cases/public-10.json) through the loop with `MockEngine` + `StubJudge`. The mock engine intentionally returns gibberish — the point is the report SHAPE, not the score.
+The package ships a CLI that runs the [10 public benchmark cases from deep-research-bench](https://github.com/dnarsh/deep-research-bench/blob/main/cases/public-10.json) through the loop with `MockEngine` + `StubJudge`. The mock engine intentionally returns gibberish — the point is the report SHAPE, not the score.
 
 ```bash
 refinement-loop-eval --cases cases/public-10.json --max-rounds 3 --threshold 4
@@ -108,7 +109,7 @@ print(f"Mean delta: {report.mean_delta:+.2f} judge-points")
 
 ## Wiring a real engine
 
-Any object with a `name` and `run(query)` method works. See the [deep-research-bench README](https://github.com/aiton08255/deep-research-bench#wiring-a-real-engine) for the full engine-adapter pattern (~30 lines for Perplexity / OpenAI / Anthropic / your own).
+Any object with a `name` and `run(query)` method works. See the [deep-research-bench README](https://github.com/dnarsh/deep-research-bench#wiring-a-real-engine) for the full engine-adapter pattern (~30 lines for Perplexity / OpenAI / Anthropic / your own).
 
 ## Wiring a real judge
 
@@ -203,7 +204,7 @@ That's it. The whole loop is ~120 LOC (`src/refinement_loop/loop.py`). The rest 
 ## Run the tests
 
 ```bash
-git clone https://github.com/aiton08255/refinement-loop
+git clone https://github.com/dnarsh/refinement-loop
 cd refinement-loop
 pip install -e ".[dev]"
 python -m pytest tests/ -v
@@ -246,4 +247,4 @@ Please don't submit PRs that:
 - Add async / streaming as the default (acceptable as opt-in addon)
 - Rename the public API without a very good reason
 
-Open an [issue](https://github.com/aiton08255/refinement-loop/issues) before a large PR.
+Open an [issue](https://github.com/dnarsh/refinement-loop/issues) before a large PR.

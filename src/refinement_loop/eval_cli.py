@@ -101,7 +101,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     except ImportError:
         print(
             "error: deep-research-bench is required.\n"
-            "install with: pip install git+https://github.com/aiton08255/deep-research-bench",
+            "install with: pip install git+https://github.com/dnarsh/deep-research-bench",
             file=sys.stderr,
         )
         return 2

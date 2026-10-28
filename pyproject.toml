@@ -29,13 +29,13 @@ classifiers = [
 # use the bench-driven eval helpers, but importing the core loop
 # (RefinementLoop + protocols + stubs) works without it.
 dependencies = [
-  "deep-research-bench @ git+https://github.com/aiton08255/deep-research-bench",
+  "deep-research-bench @ git+https://github.com/dnarsh/deep-research-bench",
 ]
 
 [project.urls]
-Homepage = "https://github.com/aiton08255/refinement-loop"
-Source = "https://github.com/aiton08255/refinement-loop"
-Issues = "https://github.com/aiton08255/refinement-loop/issues"
+Homepage = "https://github.com/dnarsh/refinement-loop"
+Source = "https://github.com/dnarsh/refinement-loop"
+Issues = "https://github.com/dnarsh/refinement-loop/issues"
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0"]
